@@ -16,6 +16,7 @@ const lista = ['Rick Sanchez', 'Morty Smith', 'Summer Smith']
 
 // Read All - [GET] /item
 app.get('/item', function (req, res) {
+  //Pegamos a lista e enviamos como resposta ao HTTP
   res.send(lista)
 })
 
