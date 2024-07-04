@@ -41,13 +41,27 @@ app.post('/item', function (req, res) {
 app.get('/item/:id', function (req, res){
   //Acessamos o parâmetro de rota ID
   const id = req.params.id 
-
+  
 //Acessamos o item na lista pelo índice corrigido (id-1)
   const item = lista [id - 1]
 
 //Enviamos o item obtido como resposta
   res.send(item)
 
+})
+
+//Update PUT - atualização completa - /item/:id
+app.put('/item/:id', function (req, res){
+  //Acessamos o ID do parâmetro de rota
+  const id = req.params.id
+  // Acessamos o Body da requisição, com os dados a serem atualizados
+  const novoItem = req.body.nome
+
+  // Atualizamos esse novoItem na lsita, usando o índice
+  lista[id - 1] = novoItem
+
+  //Enviamos a mensagem de sucesso
+  res.send('Item Atualizado com Sucesso')
 })
 
 app.listen(3000)
