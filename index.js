@@ -61,7 +61,7 @@ app.put('/item/:id', function (req, res){
   lista[id - 1] = novoItem
 
   //Enviamos a mensagem de sucesso
-  res.send('Item Atualizado com Sucesso')
+  res.send('Item Atualizado com Sucesso: ' + id)
 })
 
 app.listen(3000)
