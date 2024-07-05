@@ -68,14 +68,17 @@ async function main() {
   })
 
   //Update PUT - atualização completa - /item/:id
-  app.put('/item/:id', function (req, res) {
+  app.put('/item/:id', async function (req, res) {
     //Acessamos o ID do parâmetro de rota
     const id = req.params.id
     // Acessamos o Body da requisição, com os dados a serem atualizados
-    const novoItem = req.body.nome
+    const novoItem = req.body
 
-    // Atualizamos esse novoItem na lista, usando o índice
-    lista[id - 1] = novoItem
+    // Atualizamos a collection com a nova informação
+    await collection.updateOne(
+      {_id: new ObjectId(id)},
+      {$set: novoItem}
+    )
 
     //Enviamos a mensagem de sucesso
     res.send('Item Atualizado com Sucesso: ' + id)
